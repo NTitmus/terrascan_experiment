@@ -78,14 +78,14 @@ resource "aws_security_group" "web_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["172.5.7.0/32"]
   }
 
   ingress {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = ["172.5.7.0/32"]
   }
 
   egress {
@@ -101,6 +101,7 @@ resource "aws_instance" "example" {
   ami           = "ami-0cfd0973db26b893b"
   subnet_id     = aws_subnet.a_subnet.id
   vpc_security_group_ids      = [aws_security_group.web_sg.id]
+  monitoring = true
 
   metadata_options {
     http_endpoint = "enabled"
