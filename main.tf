@@ -120,6 +120,7 @@ resource "aws_flow_log" "example" {
 
 resource "aws_cloudwatch_log_group" "example" {
   name = "example"
+  retention_in_days = 30
 }
 
 data "aws_iam_policy_document" "assume_role" {
