@@ -14,7 +14,7 @@ terraform {
     # manually, uncomment and fill in the config below.
 
     bucket         = "terraform-book-state-nt2"
-    key            = "simple_module/terraform.tfstate"
+    key            = "terrascan_experiment/terraform.tfstate"
     region         = "eu-west-2"
     dynamodb_table = "terraform-book-locks2"
     encrypt        = true
@@ -32,6 +32,7 @@ resource "aws_vpc" "new_vpc" {
 resource "aws_subnet" "private_subnet" {
   vpc_id     = aws_vpc.new_vpc.id
   cidr_block = "10.0.4.0/24"
+  availability_zone = "1a"
 
   tags = {
     Name = "Private Subnet Project VPC"
