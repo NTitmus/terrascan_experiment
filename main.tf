@@ -35,8 +35,8 @@ resource "aws_vpc" "new_vpc" {
 }
 
 resource "aws_subnet" "a_subnet" {
-  vpc_id     = aws_vpc.new_vpc.id
-  cidr_block = "10.0.4.0/24"
+  vpc_id            = aws_vpc.new_vpc.id
+  cidr_block        = "10.0.4.0/24"
   availability_zone = "1a"
 
   tags = {
@@ -97,11 +97,11 @@ resource "aws_security_group" "web_sg" {
 }
 
 resource "aws_instance" "example" {
-  instance_type = "t2.micro"
-  ami           = "ami-0cfd0973db26b893b"
-  subnet_id     = aws_subnet.a_subnet.id
-  vpc_security_group_ids      = [aws_security_group.web_sg.id]
-  monitoring = true
+  instance_type          = "t2.micro"
+  ami                    = "ami-0cfd0973db26b893b"
+  subnet_id              = aws_subnet.a_subnet.id
+  vpc_security_group_ids = [aws_security_group.web_sg.id]
+  monitoring             = true
 
   metadata_options {
     http_endpoint = "enabled"
@@ -119,7 +119,7 @@ resource "aws_flow_log" "example" {
 }
 
 resource "aws_cloudwatch_log_group" "example" {
-  name = "example"
+  name              = "example"
   retention_in_days = 30
 }
 
